@@ -1,6 +1,7 @@
 > 仅供学习交流使用
 
-使用QT编写，直接编译运行即可，或者直接下载release中的release.zip，运行其中的pvz_cheating.exe
+使用QT编写，直接编译运行即可，或者直接下载release中的release.zip，运行其中的**pvz_cheating.exe**
+
 目前支持功能：
 - 修改阳光
 - 定时修改阳光
