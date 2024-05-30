@@ -156,6 +156,9 @@
     </property>
    </widget>
    <widget class="QCheckBox" name="mod_sunlight_auto_checkbox">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -245,10 +248,8 @@
    </property>
    <widget class="QMenu" name="menuAuthor">
     <property name="title">
-     <string>作者</string>
+     <string>ZJamss</string>
     </property>
-    <addaction name="actionZJamss"/>
-    <addaction name="actionhttps_github_com_ZJamss"/>
    </widget>
    <addaction name="menuAuthor"/>
   </widget>
