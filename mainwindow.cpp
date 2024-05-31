@@ -7,8 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle("PVZ修改器");
-    //设置窗口固定大小
-    this->setFixedSize(QSize(400,300));
+    this->resize(300,200);
 
     // 绑定按钮点击事件
     connect(ui->mod_sunlight_btn, &QPushButton::clicked, this, &MainWindow::onModSunlightClicked);
