@@ -8,6 +8,6 @@
 - 无冷却
 - 金币修改（地址好像不适用，需要重新定位寻址）
 
-基本不会更新，有问题可以提issue
+基本不会更新，有问题可以提issue，欢迎pr
 
 ![image](https://github.com/ZJamss/PVZ_Cheating/assets/76551468/53f2a861-8a72-4fb3-82a7-6022689625f3)
