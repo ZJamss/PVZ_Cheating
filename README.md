@@ -10,5 +10,6 @@
 
 基本不会更新，有问题可以提issue，欢迎pr
 
-![image](https://github.com/ZJamss/PVZ_Cheating/assets/76551468/1c01986f-ab83-4e4d-ac4b-594c616224dc)
+![image](https://github.com/ZJamss/PVZ_Cheating/assets/76551468/94740426-5e2c-4d5e-b6ef-83418dc99fe6)
+
 
