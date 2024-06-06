@@ -9,7 +9,7 @@
 - 失焦不暂停（可以放心挂机了）
 - 银币修改
 
-基本不会更新，有问题或意向功能可以提issue，欢迎pr
+基本不会更新，有建议或意向功能等可以提issue交流，欢迎pr
 
 ![image](https://github.com/ZJamss/PVZ_Cheating/assets/76551468/d07abb65-8966-4722-9447-b64f7a9d8933)
 
