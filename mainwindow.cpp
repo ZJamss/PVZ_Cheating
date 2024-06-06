@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->cd_btn,&QPushButton::clicked,this,&MainWindow::onCdClicked);
     connect(ui->no_cd_btn,&QPushButton::clicked,this,&MainWindow::onNoCdClicked);
     connect(ui->handle_find_btn,&QPushButton::clicked,this,&MainWindow::initGameHandle);
+    connect(ui->mod_pause_checkbox,&QCheckBox::clicked,this,&MainWindow::modPause);
 
     //绑定信号
     connect(this, &MainWindow::showMessageSignal, this, &MainWindow::showMessage, Qt::QueuedConnection);
@@ -99,6 +100,51 @@ void MainWindow::modCD(){
         Sleep(500);
     }
 }
+\
+// 取消自动暂停窗口
+void MainWindow::modPause(){
+
+    LPVOID address = reinterpret_cast<LPVOID>(0x004502C6);
+    SIZE_T size = 0x004504A0 - 0x004502C6 + 1;
+    BYTE* destInstuctionArray;
+
+    //保存暂停窗口指令
+    if(this->pauseInstructionArray == nullptr){
+        this->pauseInstructionArray = new BYTE[size];
+        SIZE_T bytesRead;
+        if (!ReadProcessMemory(this->gameHandle, address, this->pauseInstructionArray, size, &bytesRead)) {
+            QMessageBox::information(this, "Info", "读取内存指令失败");
+            return;
+        }
+    }
+
+    //创建nop指令数组
+    if(this->nopArray == nullptr){
+        this->nopArray = new BYTE[size];
+        memset(this->nopArray, NOP, size);
+    }
+
+    if(ui->mod_pause_checkbox->isChecked()){
+        destInstuctionArray = this->nopArray;
+    }else{
+        destInstuctionArray = this->pauseInstructionArray;
+    }
+    DWORD oldProtect;
+    if (!VirtualProtectEx(this->gameHandle, address, size, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+        QMessageBox::information(this, "Info", "取消内存保护出错");
+        return;
+    }
+    SIZE_T bytesWritten;
+    if (!WriteProcessMemory(this->gameHandle, address, destInstuctionArray, size, &bytesWritten)) {
+        QMessageBox::information(this, "Info", "写入内存出错");
+        return;
+    }
+
+    if (!VirtualProtectEx(this->gameHandle, address, size, oldProtect, &oldProtect)) {
+        QMessageBox::information(this, "Info", "恢复内存保护出错");
+        return;
+    }
+}
 
 void MainWindow::showMessage(const QString& message) {
     QMessageBox::information(this, "Info", message);
@@ -115,7 +161,7 @@ void MainWindow::initGameHandle()
 {
     QString windowName = ui->window_name_input->text();
     HANDLE hgame = getGameHandle(nullptr,
-        reinterpret_cast<LPCWSTR>(windowName.toStdWString().c_str()));
+                                 reinterpret_cast<LPCWSTR>(windowName.toStdWString().c_str()));
     bool reloadState = false;
     if(hgame == nullptr){
         QMessageBox::warning(this,"Warning","未找到PVZ游戏进程,请检查窗口名称输入是否正确或者游戏是否打开！");
@@ -140,6 +186,7 @@ void MainWindow::reloadBtnsState(bool reloadState)
     ui->mod_sunlight_input->setEnabled(this->handleInited);
     ui->mod_sunlight_btn->setEnabled(this->handleInited);
     ui->mod_sunlight_auto_checkbox->setEnabled(this->handleInited);
+    ui->mod_pause_checkbox->setEnabled(this->handleInited);
     // ui->mod_coin_input->setEnabled(this->handleInited);
     // ui->mod_coin_btn->setEnabled(this->handleInited);
 }

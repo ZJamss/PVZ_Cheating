@@ -28,6 +28,8 @@ private:
     bool handleInited = false;
     bool tSunlightRunning = false;
     bool tCDRunning = false;
+    BYTE* pauseInstructionArray = nullptr;
+    BYTE* nopArray = nullptr;
     void onModSunlightClicked();
     void onModCoinClicked();
     void onCdClicked();
@@ -37,6 +39,7 @@ private:
     bool modMemoData(DWORD Adress,DWORD AdressFirst,DWORD AdressSecond,int value);
     void autoModSunlight(int sunlightValue);
     void modCD();
+    void modPause();
     void showMessage(const QString& message);
 
 signals: // 定义信号
