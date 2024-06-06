@@ -1,0 +1,27 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+#include <minwindef.h>
+
+#define NOP 0x90
+
+// 阳光地址
+const DWORD SUNLIGHT_BASE = 0x006A9F38;
+const DWORD SUNLIGHT_OFFSET1 = 0x768;
+const DWORD SUNLIGHT_OFFSET2 = 0x5560;
+
+// 银币地址
+const DWORD COIN_BASE = 0x006A9EC0;
+const DWORD COIN_OFFSET1 = 0x82C;
+const DWORD COIN_OFFSET2 = 0x208;
+
+// 冷却地址
+const DWORD CD_BASE = 0x006A9EC0;
+const DWORD CD_OFFSET1 = 0x768;
+const DWORD CD_OFFSET2 = 0x144;
+
+// 暂停窗口地址
+const DWORD PAUSE_ADDRESS = 0x004502C6;
+const SIZE_T PAUSE_SIZE = 0x004504A0 - 0x004502C6 + 1;
+
+#endif // CONSTANTS_H

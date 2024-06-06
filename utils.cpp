@@ -22,6 +22,13 @@ int Readmeo(HANDLE hgame, DWORD Adress, DWORD AdressFirst, DWORD AdressSecond)
     ReadProcessMemory(hgame, (LPDWORD)(AdressFirstValue + AdressSecond), &AdressSecondValue, sizeof(DWORD), 0);
     return AdressFirstValue + AdressSecond;
 }
+
+bool writeMemo(HANDLE handle,DWORD Adress,DWORD AdressFirst,DWORD AdressSecond,int value)
+{
+    DWORD Final_Adress = Readmeo(handle, Adress, AdressFirst, AdressSecond);
+    return WriteProcessMemory(handle, (LPVOID)(Final_Adress), &value, sizeof(DWORD), 0);
+}
+
 HANDLE getGameHandle(LPCSTR className,LPCWSTR windowName){
     HWND game = FindWindow(nullptr, windowName);
     if (game == nullptr){

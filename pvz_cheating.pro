@@ -11,10 +11,13 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    modifiers.cpp \
     utils.cpp
 
 HEADERS += \
+    constants.h \
     mainwindow.h \
+    modifiers.h \
     utils.h
 
 FORMS += \
