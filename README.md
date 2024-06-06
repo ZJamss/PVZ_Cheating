@@ -6,10 +6,12 @@
 - 修改阳光
 - 定时修改阳光
 - 无冷却
+- 失焦不暂停（可以放心挂机了）
 - 金币修改（地址好像不适用，需要重新定位寻址）
 
 基本不会更新，有问题可以提issue，欢迎pr
 
-![image](https://github.com/ZJamss/PVZ_Cheating/assets/76551468/94740426-5e2c-4d5e-b6ef-83418dc99fe6)
+![image](https://github.com/ZJamss/PVZ_Cheating/assets/76551468/d07abb65-8966-4722-9447-b64f7a9d8933)
+
 
 
