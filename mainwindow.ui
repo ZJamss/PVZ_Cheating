@@ -212,7 +212,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>金币</string>
+         <string>银币</string>
         </property>
        </widget>
       </item>
@@ -247,7 +247,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>修改金币</string>
+         <string>修改银币</string>
         </property>
        </widget>
       </item>

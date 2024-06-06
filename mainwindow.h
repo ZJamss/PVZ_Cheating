@@ -1,17 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-
-#include "utils.h"
-#include <QThread>
-#include <chrono>
 #include <QMainWindow>
-#include <QMessageBox>
+#include "modifiers.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
+namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -25,24 +19,35 @@ public:
 private:
     Ui::MainWindow *ui;
     HANDLE gameHandle;
-    bool handleInited = false;
-    bool tSunlightRunning = false;
-    bool tCDRunning = false;
-    BYTE* pauseInstructionArray = nullptr;
-    BYTE* nopArray = nullptr;
+
+    // 修改器
+    SunlightModifier* sunlightModifier;
+    CoinModifier* coinModifier;
+    CooldownModifier* cooldownModifier;
+    PauseModifier* pauseModifier;
+    GameHandleManager* gameHandleManager;
+
+    // 控件事件
     void onModSunlightClicked();
     void onModCoinClicked();
     void onCdClicked();
     void onNoCdClicked();
-    void initGameHandle();
-    void reloadBtnsState(bool reloadState);
-    bool modMemoData(DWORD Adress,DWORD AdressFirst,DWORD AdressSecond,int value);
-    void autoModSunlight(int sunlightValue);
-    void modCD();
     void modPause();
     void showMessage(const QString& message);
 
-signals: // 定义信号
+    // 初始化事件
+    void initGameHandle();
+    void reloadButtonsState(bool state);
+
+signals:
     void showMessageSignal(const QString& message);
+
+    friend class Modifier;
+    friend class SunlightModifier;
+    friend class CoinModifier;
+    friend class CooldownModifier;
+    friend class PauseModifier;
+    friend class GameHandleManager;
 };
+
 #endif // MAINWINDOW_H
