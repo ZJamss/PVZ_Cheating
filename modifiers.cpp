@@ -33,10 +33,15 @@ void SunlightModifier::autoModify(int sunlightValue)
 
 void CoinModifier::modify(int coinValue)
 {
-    if (writeMemo(mainWindow->gameHandle,COIN_BASE, COIN_OFFSET1, COIN_OFFSET2, coinValue)) {
-        QMessageBox::information(mainWindow, "Info", "修改金币数量成功");
+    bool res = true;
+    res = res && writeMemo(mainWindow->gameHandle,COIN_BASE, COIN_OFFSET1, COIN_OFFSET2, coinValue);
+    res = res && writeMemo(mainWindow->gameHandle,GCOIN_BASE, GCOIN_OFFSET1, GCOIN_OFFSET2, coinValue);
+    res = res && writeMemo(mainWindow->gameHandle,DIAMOND_BASE, DIAMOND_OFFSET1, DIAMOND_OFFSET2, coinValue);
+
+    if (res) {
+        QMessageBox::information(mainWindow, "Info", "修改货币数量成功");
     } else {
-        QMessageBox::warning(mainWindow, "Warning", "修改金币数量失败");
+        QMessageBox::warning(mainWindow, "Warning", "修改货币数量失败");
     }
 }
 
