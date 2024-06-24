@@ -158,4 +158,60 @@ void GameHandleManager::reloadButtonsState(bool reloadState)
     mainWindow->ui->mod_pause_checkbox->setEnabled(this->handleInited);
     mainWindow->ui->mod_coin_input->setEnabled(this->handleInited);
     mainWindow->ui->mod_coin_btn->setEnabled(this->handleInited);
+    mainWindow->ui->mod_plant_decr_life_checkbox->setEnabled(this->handleInited);
+}
+
+void PlantModifier::plantDecrLifeModify(bool enable)
+{
+    LPVOID address = reinterpret_cast<LPVOID>(PLANT_DECR_LIFE_ADDRESS);
+    SIZE_T size = PLANT_DECR_LIFE_SIZE;
+    BYTE* destInstuctionArray;
+
+    // 初始化指令数组
+    if (this->plantDecrLifeInstructionArray == nullptr) {
+        this->plantDecrLifeInstructionArray = new BYTE[size];
+        SIZE_T bytesRead;
+        if (!ReadProcessMemory(mainWindow->gameHandle, address, this->plantDecrLifeInstructionArray, size, &bytesRead)) {
+            QMessageBox::information(mainWindow, "Info", "读取内存指令失败");
+            return;
+        }
+    }
+
+    if (this->nopArray == nullptr) {
+        this->nopArray = new BYTE[size];
+        memset(this->nopArray, NOP, size);
+    }
+
+    // 切换目标指令数组
+    if (enable) {
+        destInstuctionArray = this->nopArray;
+    } else {
+        destInstuctionArray = this->plantDecrLifeInstructionArray;
+    }
+
+    DWORD oldProtect;
+    if (!VirtualProtectEx(mainWindow->gameHandle, address, size, PAGE_EXECUTE_READWRITE, &oldProtect)) {
+        QMessageBox::warning(mainWindow, "Warning", "取消内存保护出错");
+        return;
+    }
+
+    SIZE_T bytesWritten;
+    if (!WriteProcessMemory(mainWindow->gameHandle, address, destInstuctionArray, size, &bytesWritten)) {
+        QMessageBox::warning(mainWindow, "Warning", "写入内存出错");
+        return;
+    }
+
+    if (!VirtualProtectEx(mainWindow->gameHandle, address, size, oldProtect, &oldProtect)) {
+        QMessageBox::warning(mainWindow, "Warning", "恢复内存保护出错");
+        return;
+    }
+}
+
+PlantModifier::~PlantModifier(){
+    if(this->plantDecrLifeInstructionArray != nullptr){
+        delete[] this->plantDecrLifeInstructionArray;
+    }
+    if(this->nopArray != nullptr){
+        delete[] this->nopArray;
+    }
 }

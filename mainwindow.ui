@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>404</width>
-    <height>333</height>
+    <width>412</width>
+    <height>344</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -65,7 +65,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>植物大战僵尸杂交版v2.0.88</string>
+         <string>植物大战僵尸杂交版v2.1 </string>
         </property>
        </widget>
       </item>
@@ -254,18 +254,8 @@
      </layout>
     </item>
     <item>
-     <layout class="QGridLayout" name="gridLayout_5">
-      <item row="0" column="1">
-       <widget class="QCheckBox" name="mod_pause_checkbox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
        <widget class="QLabel" name="label_5">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -278,6 +268,39 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QCheckBox" name="mod_pause_checkbox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>植物无敌</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="mod_plant_decr_life_checkbox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -287,14 +310,15 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>404</width>
+     <width>412</width>
      <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAuthor">
     <property name="title">
-     <string>ZJamss</string>
+     <string>项目地址</string>
     </property>
+    <addaction name="actionhttps_github_com_ZJamss_PVZ_Cheating"/>
    </widget>
    <addaction name="menuAuthor"/>
   </widget>
@@ -307,6 +331,11 @@
   <action name="actionhttps_github_com_ZJamss">
    <property name="text">
     <string>https://github.com/ZJamss</string>
+   </property>
+  </action>
+  <action name="actionhttps_github_com_ZJamss_PVZ_Cheating">
+   <property name="text">
+    <string>https://github.com/ZJamss/PVZ_Cheating</string>
    </property>
   </action>
  </widget>

@@ -25,6 +25,7 @@ private:
     CoinModifier* coinModifier;
     CooldownModifier* cooldownModifier;
     PauseModifier* pauseModifier;
+    PlantModifier* plantModifier;
     GameHandleManager* gameHandleManager;
 
     // 控件事件
@@ -33,6 +34,7 @@ private:
     void onCdClicked();
     void onNoCdClicked();
     void modPause();
+    void modifyPlantDecrLife();
     void showMessage(const QString& message);
 
     // 初始化事件
@@ -47,6 +49,7 @@ signals:
     friend class CoinModifier;
     friend class CooldownModifier;
     friend class PauseModifier;
+    friend class PlantModifier;
     friend class GameHandleManager;
 };
 
