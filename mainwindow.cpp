@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     coinModifier = new CoinModifier(this);
     cooldownModifier = new CooldownModifier(this);
     pauseModifier = new PauseModifier(this);
+    plantModifier = new PlantModifier(this);
     gameHandleManager = new GameHandleManager(this);
 
     // 绑定按钮点击事件
@@ -23,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->no_cd_btn, &QPushButton::clicked, this, &MainWindow::onNoCdClicked);
     connect(ui->handle_find_btn, &QPushButton::clicked, this, &MainWindow::initGameHandle);
     connect(ui->mod_pause_checkbox, &QCheckBox::clicked, this, &MainWindow::modPause);
+    connect(ui->mod_plant_decr_life_checkbox, &QCheckBox::clicked, this, &MainWindow::modifyPlantDecrLife);
 
     // 绑定信号
     connect(this, &MainWindow::showMessageSignal, this, &MainWindow::showMessage, Qt::QueuedConnection);
@@ -70,6 +72,13 @@ void MainWindow::modPause()
 {
     bool enable = ui->mod_pause_checkbox->isChecked();
     pauseModifier->togglePause(enable);
+}
+
+// 植物无敌
+void MainWindow::modifyPlantDecrLife()
+{
+    bool enable = ui->mod_plant_decr_life_checkbox->isChecked();
+    plantModifier->plantDecrLifeModify(enable);
 }
 
 void MainWindow::showMessage(const QString& message)

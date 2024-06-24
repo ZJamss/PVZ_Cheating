@@ -64,6 +64,18 @@ private:
     BYTE* nopArray = nullptr;
 };
 
+// 植物修改器
+class PlantModifier : public Modifier
+{
+public:
+    using Modifier::Modifier;
+    ~PlantModifier();
+    void plantDecrLifeModify(bool enable);
+private:
+    BYTE* plantDecrLifeInstructionArray = nullptr;
+    BYTE* nopArray = nullptr;
+};
+
 // 游戏上下文管理
 class GameHandleManager : public Modifier
 {
